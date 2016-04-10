@@ -1,0 +1,10 @@
+Goal of this project
+
+Find out which historic versions in TimeBackup consume space and which files are included
+
+Steps:
+- Create a list of all files in unix filesystem
+	find -exec stat -t {} \; > /volume1/Stefan/list.txt
+- convert to csv
+- import to Excel
+- analyze
