@@ -60,7 +60,7 @@ while(<>) {
 		print "commit at $bname $.\n";
 		$dbh->commit;
 	}
-	#print join("\t",,@ln);
+	close ARGV if eof;
 }
 
 $dbh->commit;
