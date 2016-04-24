@@ -40,6 +40,8 @@ my $count=0;
 
 my $sth = $dbh->prepare("INSERT INTO files(bkname, linenr, filename, size, blocks, type, uid, gid, device, inode, links, uid2, gid2, access_d, modify_d, change_d, ioblock) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
+my $ts = time;
+
 while(<>) {
 	my @ln = split / /;
 	
@@ -57,8 +59,10 @@ while(<>) {
 	$sth->execute($bname, $., join(' ',@fn),$ln[0], $ln[1], $ln[2], $ln[3], $ln[4], $ln[5], $ln[6], $ln[7], $ln[8], $ln[9], $dt_access, $dt_modify, $dt_change, $ln[13]) || die;
 
 	if ($. % 10000 == 0)  {
-		print "commit at $bname $.\n";
+		my $tdif = time - $ts;
+		print "commit at $bname $. $tdif\n";
 		$dbh->commit;
+		$ts = time;
 	}
 	close ARGV if eof;
 }
