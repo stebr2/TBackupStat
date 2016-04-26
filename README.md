@@ -1,5 +1,5 @@
-Goal of this project
-====================
+TimeBackup Statistics
+=====================
 
 Find out which historic versions in TimeBackup consume space and which files are included
 
